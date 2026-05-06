@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Academy Dashboard — AutoLinker</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="dashboard">
+
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div style="width:28px;height:28px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px">🏛</div>
+    <span class="sb-name">Auto<span style="color:var(--gold-light)">Linker</span></span>
+  </div>
+  <div class="sb-user">
+    <div class="sb-avatar green-bg">IM</div>
+    <div class="sb-uname">Intl. Maritime Academy</div>
+    <div class="sb-urole">Educational Institution</div>
+    <div class="sb-plan"><span class="badge badge-gold" style="font-size:10px">⭐ PLUS</span></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Academy</div>
+    <button class="nav-item" data-sec="feed" onclick="showSection('feed')"><span class="ni">📡</span><span>Community Feed</span></button>
+    <button class="nav-item" data-sec="reels" onclick="showSection('reels')"><span class="ni">▶️</span><span>Reels & Media</span></button>
+    <button class="nav-item active" data-sec="overview" onclick="showSection('overview')"><span class="ni">🏠</span><span>Overview</span></button>
+    <button class="nav-item" data-sec="candidates" onclick="showSection('candidates')"><span class="ni">👥</span><span>Candidates</span><span class="nav-badge">342</span></button>
+    <button class="nav-item" data-sec="certifications" onclick="showSection('certifications')"><span class="ni">🎖</span><span>Certifications</span></button>
+    <button class="nav-item" data-sec="programs" onclick="showSection('programs')"><span class="ni">📚</span><span>Programs</span></button>
+    <div class="sb-section-label">Partnerships</div>
+    <button class="nav-item" data-sec="agencies" onclick="showSection('agencies')"><span class="ni">⚓</span><span>Partner Agencies</span></button>
+    <button class="nav-item" data-sec="stats" onclick="showSection('stats')"><span class="ni">📊</span><span>Placement Stats</span></button>
+    <div class="sb-section-label">Communication</div>
+    <button class="nav-item" data-sec="messages" onclick="showSection('messages')"><span class="ni">💬</span><span>Messages</span></button>
+  </nav>
+  <div class="sb-foot">
+    <button class="nav-item" onclick="location.href='../login.html'"><span class="ni">↩</span><span>Sign out</span></button>
+  </div>
+</aside>
+
+<div class="main-content">
+  <div class="topbar">
+    <div class="tb-title" id="page-title">Academy Dashboard</div>
+    <div class="tb-right">
+      <button class="btn btn-navy btn-sm" onclick="openModal('verify-modal')">+ Verify Certificate</button>
+      <div class="tb-notif">🔔<div class="notif-dot"></div></div>
+      <div class="tb-avatar" style="background:var(--green)">IM</div>
+    </div>
+  </div>
+  <div class="page-body">
+
+    <!-- OVERVIEW -->
+    <div id="sec-overview" class="section-view active">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-icon blue">👤</div><div><div class="stat-value">342</div><div class="stat-label">Enrolled Candidates</div><div class="stat-change up">↑ 24 this semester</div></div></div>
+        <div class="stat-card"><div class="stat-icon green">🛡</div><div><div class="stat-value">1,284</div><div class="stat-label">Certs Issued</div><div class="stat-label">This academic year</div></div></div>
+        <div class="stat-card"><div class="stat-icon gold">📊</div><div><div class="stat-value">94%</div><div class="stat-label">Placement Rate</div><div class="stat-label">Class of 2024</div></div></div>
+        <div class="stat-card"><div class="stat-icon navy">🤝</div><div><div class="stat-value">38</div><div class="stat-label">Partner Agencies</div><div class="stat-change up">+4 new partnerships</div></div></div>
+      </div>
+      <div class="grid-70-30" style="align-items:start">
+        <div class="card">
+          <div class="section-header">
+            <div class="section-title">Recent Candidates</div>
+            <span class="section-link" onclick="showSection('candidates')">View all 342 →</span>
+          </div>
+          <div class="search-wrap" style="margin-bottom:16px">
+            <span class="search-icon">🔍</span>
+            <input class="form-control" placeholder="Search candidates..." style="padding-left:36px" oninput="filterCandidates(this.value)">
+          </div>
+          <div id="candidates-overview">
+            <div class="person-row candidate-row">
+              <div class="p-avatar" style="background:var(--blue)">MA</div>
+              <div style="flex:1"><div class="p-name">Miguel</div><div class="p-sub">Year 3 · Deck Cadet</div></div>
+              <div style="font-size:12px;color:var(--blue);font-weight:600;margin-right:12px">Profile 78%</div>
+              <button class="btn btn-ghost btn-sm">View →</button>
+            </div>
+            <div class="person-row candidate-row">
+              <div class="p-avatar" style="background:var(--green)">ST</div>
+              <div style="flex:1"><div class="p-name">Sofia Tanaka</div><div class="p-sub">Year 4 · Engineer Cadet</div></div>
+              <div style="font-size:12px;color:var(--green);font-weight:600;margin-right:12px">Profile 95%</div>
+              <button class="btn btn-ghost btn-sm">View →</button>
+            </div>
+            <div class="person-row candidate-row">
+              <div class="p-avatar" style="background:var(--orange)">KM</div>
+              <div style="flex:1"><div class="p-name">Khalid Mansour</div><div class="p-sub">Year 2 · Maritime Studies</div></div>
+              <div style="font-size:12px;color:var(--orange);font-weight:600;margin-right:12px">Profile 52%</div>
+              <button class="btn btn-ghost btn-sm">View →</button>
+            </div>
+            <div class="person-row candidate-row">
+              <div class="p-avatar" style="background:#884ea0">RH</div>
+              <div style="flex:1"><div class="p-name">Rana Haddad</div><div class="p-sub">Year 4 · Navigation</div></div>
+              <div style="font-size:12px;color:var(--green);font-weight:600;margin-right:12px">Profile 88%</div>
+              <button class="btn btn-ghost btn-sm">View →</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="section-header">
+              <div class="section-title">Pending Verifications</div>
+              <span class="section-link" onclick="showSection('certifications')">Verify all →</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-50)">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--orange);flex-shrink:0"></div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--navy)">STCW Basic Safety — Omar N.</div><div style="font-size:11px;color:var(--gray-400)">Submitted 1 hour ago</div></div>
+              <button class="btn btn-green btn-sm" style="font-size:11px" onclick="showToast('Certificate verified!','success')">Verify</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-50)">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--orange);flex-shrink:0"></div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--navy)">GMDSS-GOC — Kareem S.</div><div style="font-size:11px;color:var(--gray-400)">Submitted 3 hours ago</div></div>
+              <button class="btn btn-green btn-sm" style="font-size:11px" onclick="showToast('Certificate verified!','success')">Verify</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--orange);flex-shrink:0"></div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--navy)">Engine Room Watchkeeping — 3 cadets</div><div style="font-size:11px;color:var(--gray-400)">Yesterday</div></div>
+              <button class="btn btn-green btn-sm" style="font-size:11px" onclick="showToast('Certificates verified!','success')">Verify</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="section-title" style="margin-bottom:14px">Placement Overview</div>
+            <div class="progress-wrap"><div class="progress-label"><span>Placed in industry</span><span>94%</span></div><div class="progress-bar"><div class="progress-fill green" style="width:94%"></div></div></div>
+            <div class="progress-wrap"><div class="progress-label"><span>Awaiting placement</span><span>18 candidates</span></div><div class="progress-bar"><div class="progress-fill gold" style="width:6%"></div></div></div>
+            <div style="margin-top:12px;font-size:12px;color:var(--gray-400)">Class of 2025 — Final semester</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEED -->
+    <div id="sec-feed" class="section-view">
+      <div class="grid-70-30" style="align-items:start">
+        <div>
+          <div class="card" style="margin-bottom:16px;padding:16px">
+            <div style="display:flex;gap:10px;align-items:center">
+              <div class="p-avatar" style="background:var(--green);width:38px;height:38px;flex-shrink:0">IM</div>
+              <input class="form-control" id="post-input-academy" placeholder="Share an announcement or update...">
+              <button class="btn btn-navy btn-sm" onclick="submitPost('post-input-academy','feed-academy')">Post</button>
+            </div>
+          </div>
+          <div id="feed-academy">
+            <div class="feed-post">
+              <div class="post-header">
+                <div class="p-avatar" style="background:var(--green);width:38px;height:38px">IM</div>
+                <div class="post-meta"><div class="post-author">Intl. Maritime Academy</div><div class="post-org">Educational Institution · Beirut</div></div>
+                <div class="post-time">Yesterday</div>
+              </div>
+              <div class="post-body">🎓 Congratulations to our <strong>Class of 2025</strong>! 94% placement rate — a new record. Proud of every cadet who joined the global fleet.</div>
+              <div class="post-actions"><span class="post-action">👍 Like · 48</span><span class="post-action">💬 Comment · 12</span><span class="post-action">↗ Share</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card"><div class="section-title" style="margin-bottom:12px">Academy Stats</div>
+          <div style="padding:8px 0;border-bottom:1px solid var(--gray-50);display:flex;justify-content:space-between;font-size:13px"><span>Total candidates</span><strong>342</strong></div>
+          <div style="padding:8px 0;border-bottom:1px solid var(--gray-50);display:flex;justify-content:space-between;font-size:13px"><span>Pending verifications</span><strong style="color:var(--orange)">7</strong></div>
+          <div style="padding:8px 0;font-size:13px;display:flex;justify-content:space-between"><span>Partner agencies</span><strong>38</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REELS -->
+    <div id="sec-reels" class="section-view">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn btn-navy btn-sm">+ Upload Video</button></div>
+      <div class="grid-3">
+        <div class="card" style="padding:0;overflow:hidden"><div style="height:180px;background:linear-gradient(135deg,#117a65,#1a5276);display:flex;align-items:center;justify-content:center;font-size:36px">▶️</div><div style="padding:14px"><div style="font-weight:600;font-size:13px">STCW Certification Guide 2025</div><div style="font-size:11px;color:var(--gray-400);margin-top:4px">IMA Official · 8.4k views</div></div></div>
+        <div class="card" style="padding:0;overflow:hidden"><div style="height:180px;background:linear-gradient(135deg,#1a2744,#2563eb);display:flex;align-items:center;justify-content:center;font-size:36px">▶️</div><div style="padding:14px"><div style="font-weight:600;font-size:13px">Campus Tour — IMA Beirut</div><div style="font-size:11px;color:var(--gray-400);margin-top:4px">IMA Official · 3.2k views</div></div></div>
+        <div class="card" style="padding:0;overflow:hidden"><div style="height:180px;background:linear-gradient(135deg,#6c3483,#117a65);display:flex;align-items:center;justify-content:center;font-size:36px">▶️</div><div style="padding:14px"><div style="font-weight:600;font-size:13px">Graduation Ceremony 2024</div><div style="font-size:11px;color:var(--gray-400);margin-top:4px">IMA Official · 12k views</div></div></div>
+      </div>
+    </div>
+
+    <!-- CANDIDATES -->
+    <div id="sec-candidates" class="section-view">
+      <div class="card" style="margin-bottom:16px;padding:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="search-wrap" style="flex:1;min-width:200px"><span class="search-icon">🔍</span><input class="form-control" placeholder="Search candidates..." style="padding-left:36px"></div>
+          <select class="form-control" style="width:160px"><option>All Years</option><option>Year 1</option><option>Year 2</option><option>Year 3</option><option>Year 4</option></select>
+          <select class="form-control" style="width:160px"><option>All Programs</option><option>Deck</option><option>Engineering</option><option>Navigation</option></select>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Candidate</th><th>Year</th><th>Program</th><th>CRI Score</th><th>Certs</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--blue);width:32px;height:32px;font-size:12px">MA</div><strong>Miguel A.</strong></div></td><td>Year 3</td><td>Deck</td><td><span style="color:var(--blue);font-weight:700">78%</span></td><td>3</td><td><span class="badge badge-blue">Active</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--green);width:32px;height:32px;font-size:12px">ST</div><strong>Sofia T.</strong></div></td><td>Year 4</td><td>Engineering</td><td><span style="color:var(--green);font-weight:700">95%</span></td><td>6</td><td><span class="badge badge-green">Placed</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--orange);width:32px;height:32px;font-size:12px">KM</div><strong>Khalid M.</strong></div></td><td>Year 2</td><td>Maritime Studies</td><td><span style="color:var(--orange);font-weight:700">52%</span></td><td>1</td><td><span class="badge badge-gray">In Progress</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:#884ea0;width:32px;height:32px;font-size:12px">RH</div><strong>Rana H.</strong></div></td><td>Year 4</td><td>Navigation</td><td><span style="color:var(--green);font-weight:700">88%</span></td><td>5</td><td><span class="badge badge-gold">Job Seeking</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:#1a5276;width:32px;height:32px;font-size:12px">ON</div><strong>Omar N.</strong></div></td><td>Year 3</td><td>Deck</td><td><span style="color:var(--blue);font-weight:700">70%</span></td><td>2</td><td><span class="badge badge-blue">Active</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div id="sec-certifications" class="section-view">
+      <div class="card">
+        <div class="section-header" style="margin-bottom:16px">
+          <div class="section-title">Pending Verifications</div>
+          <span class="badge badge-gold">7 pending</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Certificate</th><th>Candidate</th><th>Submitted</th><th>Type</th><th>Actions</th></tr></thead>
+            <tbody id="cert-table">
+              <tr><td><strong>STCW Basic Safety Training</strong></td><td>Omar Nassar</td><td>1 hour ago</td><td><span class="badge badge-blue">STCW</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm">📄 View</button><button class="btn btn-green btn-sm" onclick="verifyCert(this)">Verify</button><button class="btn btn-red btn-sm" onclick="rejectCert(this)">Reject</button></div></td></tr>
+              <tr><td><strong>GMDSS-GOC</strong></td><td>Kareem Saleh</td><td>3 hours ago</td><td><span class="badge badge-blue">GMDSS</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm">📄 View</button><button class="btn btn-green btn-sm" onclick="verifyCert(this)">Verify</button><button class="btn btn-red btn-sm" onclick="rejectCert(this)">Reject</button></div></td></tr>
+              <tr><td><strong>Engine Room Watchkeeping</strong></td><td>Rami Moussa</td><td>Yesterday</td><td><span class="badge badge-gray">Engineering</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm">📄 View</button><button class="btn btn-green btn-sm" onclick="verifyCert(this)">Verify</button><button class="btn btn-red btn-sm" onclick="rejectCert(this)">Reject</button></div></td></tr>
+              <tr><td><strong>Advanced Fire Fighting</strong></td><td>Rana Haddad</td><td>2 days ago</td><td><span class="badge badge-red">Safety</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm">📄 View</button><button class="btn btn-green btn-sm" onclick="verifyCert(this)">Verify</button><button class="btn btn-red btn-sm" onclick="rejectCert(this)">Reject</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRAMS -->
+    <div id="sec-programs" class="section-view">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn btn-navy btn-sm" onclick="openModal('add-program-modal')">+ Add Program</button></div>
+      <div class="grid-2" style="gap:16px">
+        <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="font-weight:700;font-size:15px;color:var(--navy)">Bachelor of Maritime Studies — Deck</div><div style="font-size:12px;color:var(--gray-400);margin-top:4px">4-year programme · 180 credits</div></div><span class="badge badge-green">Active</span></div><div style="font-size:13px;color:var(--gray-600);margin-bottom:12px">Prepares candidates for OOW certification. Includes watchkeeping, cargo operations, COLREGS, and STCW modules.</div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400)"><span>Enrolled: <strong style="color:var(--navy)">128</strong></span><span>Placement: <strong style="color:var(--green)">94%</strong></span></div></div>
+        <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="font-weight:700;font-size:15px;color:var(--navy)">Marine Engineering — Technical</div><div style="font-size:12px;color:var(--gray-400);margin-top:4px">4-year programme · 180 credits</div></div><span class="badge badge-green">Active</span></div><div style="font-size:13px;color:var(--gray-600);margin-bottom:12px">Engine room operations, maintenance, and STCW engineering modules. Leads to Officer of the Watch (Engineering) certification.</div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400)"><span>Enrolled: <strong style="color:var(--navy)">96</strong></span><span>Placement: <strong style="color:var(--green)">91%</strong></span></div></div>
+        <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="font-weight:700;font-size:15px;color:var(--navy)">Maritime Safety Management</div><div style="font-size:12px;color:var(--gray-400);margin-top:4px">2-year programme · 90 credits</div></div><span class="badge badge-green">Active</span></div><div style="font-size:13px;color:var(--gray-600);margin-bottom:12px">ISM Code, SMS, SOLAS compliance, emergency procedures, and crisis management for maritime officers.</div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400)"><span>Enrolled: <strong style="color:var(--navy)">54</strong></span><span>Placement: <strong style="color:var(--green)">97%</strong></span></div></div>
+        <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="font-weight:700;font-size:15px;color:var(--navy)">Short Course: GMDSS Operator</div><div style="font-size:12px;color:var(--gray-400);margin-top:4px">6-week intensive</div></div><span class="badge badge-blue">Upcoming</span></div><div style="font-size:13px;color:var(--gray-600);margin-bottom:12px">Global Maritime Distress and Safety System certification. Open to all maritime professionals.</div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400)"><span>Registered: <strong style="color:var(--navy)">28</strong></span><span>Starts: <strong>Jun 2025</strong></span></div></div>
+      </div>
+    </div>
+
+    <!-- PARTNER AGENCIES -->
+    <div id="sec-agencies" class="section-view">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn btn-navy btn-sm">+ Add Partnership</button></div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Agency</th><th>Location</th><th>Hires from IMA</th><th>Active Jobs</th><th>Since</th></tr></thead>
+            <tbody>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:#1f4e6e;width:32px;height:32px;font-size:12px">AM</div><strong>Arab Maritime Agencies</strong></div></td><td>Limassol, Cyprus</td><td><strong style="color:var(--green)">24</strong></td><td>14</td><td>2020</td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--blue);width:32px;height:32px;font-size:12px">MC</div><strong>Mediterranean Charter</strong></div></td><td>Monaco</td><td><strong style="color:var(--green)">8</strong></td><td>3</td><td>2022</td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--green);width:32px;height:32px;font-size:12px">GS</div><strong>Gulf Shipping Co.</strong></div></td><td>Dubai, UAE</td><td><strong style="color:var(--green)">15</strong></td><td>7</td><td>2021</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACEMENT STATS -->
+    <div id="sec-stats" class="section-view">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-icon green">✓</div><div><div class="stat-value">94%</div><div class="stat-label">Overall Placement</div></div></div>
+        <div class="stat-card"><div class="stat-icon blue">📅</div><div><div class="stat-value">42 days</div><div class="stat-label">Avg. Time to Placement</div></div></div>
+        <div class="stat-card"><div class="stat-icon gold">💰</div><div><div class="stat-value">$3,200</div><div class="stat-label">Avg. Starting Salary</div></div></div>
+        <div class="stat-card"><div class="stat-icon navy">🌍</div><div><div class="stat-value">18</div><div class="stat-label">Countries Placed In</div></div></div>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <div class="section-title" style="margin-bottom:16px">Placement by Program — Class of 2025</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Deck Programme</span><span>94%</span></div><div class="progress-bar"><div class="progress-fill green" style="width:94%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Marine Engineering</span><span>91%</span></div><div class="progress-bar"><div class="progress-fill" style="width:91%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Safety Management</span><span>97%</span></div><div class="progress-bar"><div class="progress-fill green" style="width:97%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="sec-messages" class="section-view">
+      <div class="grid-2" style="gap:16px;align-items:start">
+        <div class="card" style="padding:0">
+          <div style="padding:16px;border-bottom:1px solid var(--gray-100);font-weight:700;font-size:14px;color:var(--navy)">Conversations</div>
+          <div class="person-row" style="padding:14px 16px;cursor:pointer" onclick="openAcademyConv('Arab Maritime Agencies','AM')">
+            <div class="p-avatar" style="background:#1f4e6e">AM</div>
+            <div style="flex:1"><div class="p-name">Arab Maritime Agencies</div><div class="p-sub">Interested in 3 upcoming graduates...</div></div>
+            <div style="font-size:11px;color:var(--gray-400)">2h</div>
+          </div>
+          <div class="person-row" style="padding:14px 16px;cursor:pointer" onclick="openAcademyConv('Gulf Shipping','GS')">
+            <div class="p-avatar" style="background:var(--green)">GS</div>
+            <div style="flex:1"><div class="p-name">Gulf Shipping Co.</div><div class="p-sub">Partnership renewal discussion</div></div>
+            <div style="font-size:11px;color:var(--gray-400)">1d</div>
+          </div>
+        </div>
+        <div class="card" style="padding:0">
+          <div style="padding:16px;border-bottom:1px solid var(--gray-100);font-weight:700;font-size:14px;color:var(--navy)" id="acad-chat-title">Select a conversation</div>
+          <div id="acad-chat-msgs" style="padding:16px;min-height:280px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:10px"></div>
+          <div style="padding:12px;border-top:1px solid var(--gray-100);display:flex;gap:8px">
+            <input class="form-control" id="acad-chat-input" placeholder="Type a message...">
+            <button class="btn btn-navy btn-sm" onclick="sendAcadMsg()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="verify-modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Verify Certificate</div><button class="modal-close" onclick="closeModal('verify-modal')">✕</button></div>
+    <div class="form-group"><label class="form-label">Candidate Name</label><input class="form-control" placeholder="Search candidate..."></div>
+    <div class="form-group"><label class="form-label">Certificate Type</label><select class="form-control"><option>STCW Basic Safety</option><option>GMDSS</option><option>ECDIS</option><option>Advanced Fire Fighting</option><option>Proficiency in Survival Craft</option></select></div>
+    <div class="form-group"><label class="form-label">Issue Date</label><input type="date" class="form-control"></div>
+    <div class="form-group"><label class="form-label">Expiry Date</label><input type="date" class="form-control"></div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn btn-green" style="flex:1" onclick="closeModal('verify-modal');showToast('Certificate verified!','success')">✓ Verify</button>
+      <button class="btn btn-red" style="flex:1" onclick="closeModal('verify-modal');showToast('Certificate rejected','error')">✕ Reject</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="add-program-modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Add Program</div><button class="modal-close" onclick="closeModal('add-program-modal')">✕</button></div>
+    <div class="form-group"><label class="form-label">Program Name</label><input class="form-control"></div>
+    <div class="form-group"><label class="form-label">Duration</label><input class="form-control" placeholder="e.g. 4-year programme"></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-control" rows="3"></textarea></div>
+    <button class="btn btn-navy" style="width:100%" onclick="closeModal('add-program-modal');showToast('Program added!','success')">Save Program</button>
+  </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function verifyCert(btn) {
+  const row = btn.closest('tr');
+  row.querySelector('td:last-child').innerHTML = '<span class="badge badge-green">✓ Verified</span>';
+  showToast('Certificate verified!', 'success');
+}
+function rejectCert(btn) {
+  const row = btn.closest('tr');
+  row.querySelector('td:last-child').innerHTML = '<span class="badge badge-red">✕ Rejected</span>';
+  showToast('Certificate rejected', 'error');
+}
+function filterCandidates(q) {
+  document.querySelectorAll('.candidate-row').forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+function openAcademyConv(name, initials) {
+  document.getElementById('acad-chat-title').textContent = name;
+  document.getElementById('acad-chat-msgs').innerHTML = `<div style="display:flex;justify-content:flex-start"><div style="background:var(--gray-100);padding:10px 14px;border-radius:12px 12px 12px 4px;max-width:70%;font-size:13px">Hello! We're interested in 3 of your upcoming graduates for deck officer positions. Can you share their profiles?</div></div>`;
+}
+function sendAcadMsg() {
+  const inp = document.getElementById('acad-chat-input');
+  if (!inp.value.trim()) return;
+  const msgs = document.getElementById('acad-chat-msgs');
+  const div = document.createElement('div');
+  div.style.cssText = 'display:flex;justify-content:flex-end';
+  div.innerHTML = `<div style="background:var(--navy);color:#fff;padding:10px 14px;border-radius:12px 12px 4px 12px;max-width:70%;font-size:13px">${inp.value}</div>`;
+  msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight; inp.value = '';
+}
+document.getElementById('acad-chat-input')?.addEventListener('keydown', e => { if (e.key === 'Enter') sendAcadMsg(); });
+showSection('overview');
+</script>
+</body>
+</html>

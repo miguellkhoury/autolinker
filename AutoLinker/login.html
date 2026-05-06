@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign In — AutoLinker</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2744;--navy-light:#243258;--blue:#2563eb;--gold:#c89b3c;--gold-light:#e6b94a;--white:#fff;--gray-50:#f0f2f7;--gray-100:#e4e8f0;--gray-400:#8a94a8;--gray-600:#4a5568;--gray-800:#1e2535;--green:#10b981;--red:#ef4444;--tr:0.2s ease}
+body{font-family:'DM Sans',sans-serif;min-height:100vh;background:var(--gray-50);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Playfair Display',serif}
+a{text-decoration:none;color:var(--blue);font-weight:500}
+
+/* TOP BAR */
+.topbar{height:56px;background:var(--white);border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.logo{display:flex;align-items:center;gap:8px;cursor:pointer}
+.logo-icon{width:30px;height:30px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:16px;height:16px;fill:#fff}
+.logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.topbar-right{font-size:13px;color:var(--gray-400)}
+.topbar-right a{color:var(--navy)}
+
+/* MAIN LAYOUT */
+.auth-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.auth-card{background:var(--white);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.1);width:100%;max-width:480px;padding:36px}
+.auth-title{font-size:26px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.auth-sub{font-size:14px;color:var(--gray-400);margin-bottom:28px}
+
+/* ROLE PICKER */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.role-btn{border:1.5px solid var(--gray-100);border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;transition:var(--tr);background:var(--white)}
+.role-btn:hover{border-color:var(--navy);background:var(--gray-50)}
+.role-btn.active{border-color:var(--navy);background:var(--navy);color:#fff}
+.role-btn.active .rb-label{color:#fff}
+.rb-icon{font-size:22px;margin-bottom:6px}
+.rb-label{font-size:12px;font-weight:600;color:var(--gray-800);transition:var(--tr)}
+
+/* FORM */
+.form-group{margin-bottom:16px;position:relative}
+.form-label{display:block;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-600);margin-bottom:6px}
+.form-control{width:100%;padding:11px 14px;border:1.5px solid var(--gray-100);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray-800);background:var(--white);transition:var(--tr);outline:none}
+.form-control:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.form-control.err{border-color:var(--red)}
+.form-hint{font-size:12px;color:var(--gray-400);margin-top:5px;min-height:18px}
+.form-hint.suggestion{color:var(--blue)}
+.form-hint.error-msg{color:var(--red)}
+
+/* PASSWORD TOGGLE */
+.pw-wrap{position:relative}
+.pw-wrap .form-control{padding-right:42px}
+.pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:16px}
+
+/* SUBMIT */
+.btn-submit{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:var(--tr);margin-top:4px}
+.btn-submit:hover{background:var(--navy-light)}
+.btn-submit.gold{background:var(--gold)}.btn-submit.gold:hover{background:var(--gold-light)}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--gray-400);font-size:12px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--gray-100)}
+
+/* DEMO ACCOUNTS */
+.demo-box{background:var(--gray-50);border-radius:10px;padding:16px;margin-top:20px}
+.demo-title{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-400);margin-bottom:12px}
+.demo-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--white);border-radius:8px;margin-bottom:6px;border:1px solid var(--gray-100)}
+.demo-row:last-child{margin-bottom:0}
+.demo-info .demo-name{font-size:13px;font-weight:600;color:var(--gray-800)}
+.demo-info .demo-email{font-size:11px;color:var(--gray-400);margin-top:2px}
+.demo-login{font-size:12px;font-weight:600;cursor:pointer;padding:5px 12px;border-radius:6px;border:1.5px solid var(--gray-100);background:var(--white);color:var(--navy);transition:var(--tr)}
+.demo-login:hover,.demo-login.gold-btn{background:var(--gold);color:#fff;border-color:var(--gold)}
+.demo-login:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.demo-login.gold-btn:hover{background:var(--gold-light)}
+
+/* TOGGLE */
+.auth-toggle{text-align:center;margin-top:20px;font-size:13px;color:var(--gray-600)}
+.auth-toggle span{color:var(--blue);cursor:pointer;font-weight:600}
+.auth-toggle span:hover{text-decoration:underline}
+
+/* REGISTER EXTRAS */
+.register-fields{display:none}
+.register-fields.show{display:block}
+
+/* CONFIRM EMAIL */
+.confirm-box{background:#e0eaff;border-radius:10px;padding:14px 16px;font-size:13px;color:var(--navy);margin-bottom:16px;display:none}
+.confirm-box.show{display:block}
+.confirm-box strong{font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo" onclick="location.href='index.html'">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="2" fill="none"/></svg>
+    </div>
+    <span class="logo-text">Auto<span>Linker</span></span>
+  </div>
+  <div class="topbar-right" id="topbar-right">New to AutoLinker? <a href="#" onclick="switchMode('register')">Create account</a></div>
+</div>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <!-- LOGIN MODE -->
+    <div id="login-view">
+      <h2 class="auth-title">Welcome back</h2>
+      <p class="auth-sub">Sign in to your maritime dashboard</p>
+
+      <div class="role-grid">
+        <div class="role-btn" onclick="selectRole('candidate',this)"><div class="rb-icon">🎓</div><div class="rb-label">Candidate</div></div>
+        <div class="role-btn" onclick="selectRole('candidate-plus',this)"><div class="rb-icon">⭐</div><div class="rb-label">Candidate Plus</div></div>
+        <div class="role-btn" onclick="selectRole('academy',this)"><div class="rb-icon">🏛</div><div class="rb-label">Academy</div></div>
+        <div class="role-btn active" onclick="selectRole('agency',this)"><div class="rb-icon">⚓</div><div class="rb-label">Agency</div></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" id="login-email" class="form-control" placeholder="your@email.com" value="agency@autolinker.com">
+        <div class="form-hint suggestion" id="login-email-hint"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="login-pw" class="form-control" placeholder="••••••••" value="••••••••">
+          <button class="pw-toggle" onclick="togglePw('login-pw',this)" type="button">👁</button>
+        </div>
+        <div class="form-hint" style="text-align:right"><a href="#" style="font-size:12px">Forgot password?</a></div>
+      </div>
+
+      <div class="confirm-box" id="login-confirm">
+        ✉️ We'll send a confirmation to <strong id="confirm-email-text"></strong> — is that right?
+        <br><br>
+        <button onclick="proceedLogin()" style="background:var(--navy);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Yes, sign me in</button>
+        <button onclick="document.getElementById('login-confirm').classList.remove('show')" style="background:none;border:none;font-size:12px;cursor:pointer;color:var(--gray-400);margin-left:8px">Cancel</button>
+      </div>
+
+      <button class="btn-submit" onclick="handleLogin()">Sign in to dashboard</button>
+
+      <div class="divider">or use a sample account</div>
+
+      <div class="demo-box">
+        <div class="demo-title">Demo Accounts</div>
+        <div class="demo-row">
+          <div class="demo-info"><div class="demo-name">🎓 Candidate</div><div class="demo-email">candidate@autolinker.com</div></div>
+          <button class="demo-login" onclick="demoLogin('candidate','candidate@autolinker.com')">Login →</button>
+        </div>
+        <div class="demo-row">
+          <div class="demo-info"><div class="demo-name">⭐ Candidate — Plus</div><div class="demo-email">plus@autolinker.com</div></div>
+          <button class="demo-login gold-btn" onclick="demoLogin('candidate-plus','plus@autolinker.com')">Login →</button>
+        </div>
+        <div class="demo-row">
+          <div class="demo-info"><div class="demo-name">🏛 Academy</div><div class="demo-email">academy@autolinker.com</div></div>
+          <button class="demo-login" onclick="demoLogin('academy','academy@autolinker.com')">Login →</button>
+        </div>
+        <div class="demo-row">
+          <div class="demo-info"><div class="demo-name">⚓ Agency</div><div class="demo-email">agency@autolinker.com</div></div>
+          <button class="demo-login" onclick="demoLogin('agency','agency@autolinker.com')">Login →</button>
+        </div>
+
+      </div>
+
+      <div class="auth-toggle">Don't have an account? <span onclick="switchMode('register')">Create account</span></div>
+    </div>
+
+    <!-- REGISTER MODE -->
+    <div id="register-view" style="display:none">
+      <h2 class="auth-title">Create your account</h2>
+      <p class="auth-sub">Join 24,000+ maritime professionals on AutoLinker</p>
+
+      <div class="role-grid">
+        <div class="role-btn active" onclick="selectRole('candidate',this)"><div class="rb-icon">🎓</div><div class="rb-label">Candidate</div></div>
+        <div class="role-btn" onclick="selectRole('candidate-plus',this)"><div class="rb-icon">⭐</div><div class="rb-label">Candidate Plus</div></div>
+        <div class="role-btn" onclick="selectRole('academy',this)"><div class="rb-icon">🏛</div><div class="rb-label">Academy</div></div>
+        <div class="role-btn" onclick="selectRole('agency',this)"><div class="rb-icon">⚓</div><div class="rb-label">Agency</div></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" id="reg-name" class="form-control" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" id="reg-email" class="form-control" placeholder="your@email.com">
+        <div class="form-hint suggestion" id="reg-email-hint"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirm Email</label>
+        <input type="email" id="reg-email-confirm" class="form-control" placeholder="Confirm your email">
+        <div class="form-hint error-msg" id="reg-email-match"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="reg-pw" class="form-control" placeholder="Min. 8 characters">
+          <button class="pw-toggle" onclick="togglePw('reg-pw',this)" type="button">👁</button>
+        </div>
+        <div class="form-hint" id="reg-pw-hint"></div>
+      </div>
+
+      <button class="btn-submit gold" onclick="handleRegister()">Create account</button>
+
+      <div class="auth-toggle">Already have an account? <span onclick="switchMode('login')">Sign in</span></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let selectedRole = 'agency';
+
+function selectRole(role, el) {
+  selectedRole = role;
+  el.closest('.role-grid').querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  const emails = {candidate:'candidate@autolinker.com','candidate-plus':'plus@autolinker.com',academy:'academy@autolinker.com',agency:'agency@autolinker.com'};
+  const loginEmail = document.getElementById('login-email');
+  if (loginEmail) { loginEmail.value = emails[role] || ''; loginEmail.placeholder = emails[role] || 'your@email.com'; }
+}
+
+function switchMode(mode) {
+  document.getElementById('login-view').style.display = mode === 'login' ? 'block' : 'none';
+  document.getElementById('register-view').style.display = mode === 'register' ? 'block' : 'none';
+  document.getElementById('topbar-right').innerHTML = mode === 'login'
+    ? 'New to AutoLinker? <a href="#" onclick="switchMode(\'register\')">Create account</a>'
+    : 'Already have an account? <a href="#" onclick="switchMode(\'login\')">Sign in</a>';
+  // Re-init email checkers
+  setTimeout(() => {
+    initEmailChecker('reg-email', 'reg-email-hint');
+    initEmailChecker('login-email', 'login-email-hint');
+  }, 50);
+}
+
+function togglePw(id, btn) {
+  const inp = document.getElementById(id);
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+  else { inp.type = 'password'; btn.textContent = '👁'; }
+}
+
+function handleLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email) { document.getElementById('login-email').classList.add('err'); return; }
+  // Show confirmation box
+  document.getElementById('confirm-email-text').textContent = email;
+  document.getElementById('login-confirm').classList.add('show');
+}
+
+function proceedLogin() {
+  document.getElementById('login-confirm').classList.remove('show');
+  goToDashboard(selectedRole);
+}
+
+function demoLogin(role, email) {
+  selectedRole = role;
+  goToDashboard(role);
+}
+
+function goToDashboard(role) {
+  const map = {
+    'candidate': 'pages/candidate.html',
+    'candidate-plus': 'pages/candidate-plus.html',
+    'academy': 'pages/academy.html',
+    'agency': 'pages/agency.html',
+    'admin': 'pages/admin.html'
+  };
+  window.location.href = map[role] || 'pages/candidate.html';
+}
+
+function handleRegister() {
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const emailConf = document.getElementById('reg-email-confirm').value.trim();
+  const pw = document.getElementById('reg-pw').value;
+  let valid = true;
+
+  if (!name) { document.getElementById('reg-name').classList.add('err'); valid = false; }
+  if (!email) { document.getElementById('reg-email').classList.add('err'); valid = false; }
+  if (email !== emailConf) {
+    document.getElementById('reg-email-match').textContent = 'Emails do not match.';
+    document.getElementById('reg-email-confirm').classList.add('err');
+    valid = false;
+  } else {
+    document.getElementById('reg-email-match').textContent = '';
+  }
+  if (pw.length < 8) {
+    document.getElementById('reg-pw-hint').textContent = 'Password must be at least 8 characters.';
+    document.getElementById('reg-pw').classList.add('err');
+    valid = false;
+  }
+  if (!valid) return;
+  goToDashboard(selectedRole);
+}
+
+// Email typo checker
+const commonDomains = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','live.com','protonmail.com'];
+function levenshtein(a,b){const m=a.length,n=b.length,dp=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i===0?j:j===0?i:0));for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);return dp[m][n];}
+function suggestEmail(email){if(!email.includes('@'))return null;const[user,domain]=email.split('@');if(!domain)return null;let best=null,bestDist=99;for(const d of commonDomains){const dist=levenshtein(domain.toLowerCase(),d);if(dist<bestDist&&dist>0&&dist<=2){best=d;bestDist=dist;}}return best?`${user}@${best}`:null;}
+function initEmailChecker(inputId,hintId){const input=document.getElementById(inputId);const hint=document.getElementById(hintId);if(!input||!hint)return;input.addEventListener('blur',()=>{const s=suggestEmail(input.value.trim());if(s){hint.innerHTML=`Did you mean <strong style="cursor:pointer;color:var(--blue)" onclick="document.getElementById('${inputId}').value='${s}';document.getElementById('${hintId}').textContent=''">${s}</strong>?`;}else{hint.textContent='';}});}
+
+// Init
+initEmailChecker('login-email','login-email-hint');
+initEmailChecker('reg-email','reg-email-hint');
+
+// Read URL params
+const params = new URLSearchParams(location.search);
+if (params.get('mode') === 'register') switchMode('register');
+if (params.get('role')) {
+  const roleMap = {candidate:0,'candidate-plus':1,academy:2,agency:3};
+  const idx = roleMap[params.get('role')];
+  if (idx !== undefined) {
+    const btns = document.querySelectorAll('#login-view .role-btn');
+    if (btns[idx]) { selectedRole = params.get('role'); btns[idx].click(); }
+  }
+}
+
+// Remove err on input
+document.querySelectorAll('.form-control').forEach(el => {
+  el.addEventListener('input', () => el.classList.remove('err'));
+});
+</script>
+</body>
+</html>

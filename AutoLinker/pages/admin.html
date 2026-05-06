@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Panel — AutoLinker</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="dashboard">
+
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div style="width:28px;height:28px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px">🛡</div>
+    <span class="sb-name">Auto<span style="color:var(--gold-light)">Linker</span></span>
+  </div>
+  <div class="sb-user">
+    <div class="sb-avatar" style="background:var(--red)">AD</div>
+    <div class="sb-uname">Admin Panel</div>
+    <div class="sb-urole">Platform Administrator</div>
+    <div class="sb-plan"><span class="badge" style="background:var(--red);color:#fff;font-size:10px">🛡 ADMIN</span></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Platform</div>
+    <button class="nav-item active" data-sec="overview" onclick="showSection('overview')"><span class="ni">🏠</span><span>Overview</span></button>
+    <button class="nav-item" data-sec="users" onclick="showSection('users')"><span class="ni">👥</span><span>All Users</span><span class="nav-badge">2,847</span></button>
+    <button class="nav-item" data-sec="jobs" onclick="showSection('jobs')"><span class="ni">💼</span><span>All Jobs</span><span class="nav-badge">312</span></button>
+    <button class="nav-item" data-sec="certifications" onclick="showSection('certifications')"><span class="ni">🎖</span><span>Certifications</span></button>
+    <button class="nav-item" data-sec="applications" onclick="showSection('applications')"><span class="ni">📋</span><span>Applications</span></button>
+    <div class="sb-section-label">Moderation</div>
+    <button class="nav-item" data-sec="reports" onclick="showSection('reports')"><span class="ni">⚠️</span><span>Reports</span><span class="nav-badge" style="background:var(--red)">3</span></button>
+    <button class="nav-item" data-sec="verify" onclick="showSection('verify')"><span class="ni">✅</span><span>Verify Queue</span><span class="nav-badge" style="background:var(--orange)">12</span></button>
+    <div class="sb-section-label">System</div>
+    <button class="nav-item" data-sec="settings" onclick="showSection('settings')"><span class="ni">⚙️</span><span>Settings</span></button>
+    <button class="nav-item" data-sec="logs" onclick="showSection('logs')"><span class="ni">📜</span><span>Activity Log</span></button>
+  </nav>
+  <div class="sb-foot">
+    <button class="nav-item" onclick="location.href='../login.html'"><span class="ni">↩</span><span>Sign out</span></button>
+  </div>
+</aside>
+
+<div class="main-content">
+  <div class="topbar">
+    <div class="tb-title" id="page-title">Platform Overview</div>
+    <div class="tb-right">
+      <span class="badge" style="background:var(--red);color:#fff">🛡 Admin Access</span>
+      <div class="tb-notif">🔔<div class="notif-dot"></div></div>
+      <div class="tb-avatar" style="background:var(--red)">AD</div>
+    </div>
+  </div>
+  <div class="page-body">
+
+    <!-- OVERVIEW -->
+    <div id="sec-overview" class="section-view active">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-icon blue">👥</div><div><div class="stat-value">2,847</div><div class="stat-label">Total Users</div><div class="stat-change up">↑ 124 this week</div></div></div>
+        <div class="stat-card"><div class="stat-icon gold">💼</div><div><div class="stat-value">312</div><div class="stat-label">Active Job Listings</div><div class="stat-change up">↑ 18 today</div></div></div>
+        <div class="stat-card"><div class="stat-icon green">🎖</div><div><div class="stat-value">8,491</div><div class="stat-label">Certificates Issued</div><div class="stat-change up">12 pending</div></div></div>
+        <div class="stat-card"><div class="stat-icon navy">📋</div><div><div class="stat-value">4,280</div><div class="stat-label">Total Applications</div></div></div>
+      </div>
+      <div class="stats-row" style="margin-bottom:24px">
+        <div class="stat-card"><div class="stat-icon blue">🎓</div><div><div class="stat-value">1,824</div><div class="stat-label">Candidates</div></div></div>
+        <div class="stat-card"><div class="stat-icon green">🏛</div><div><div class="stat-value">48</div><div class="stat-label">Academies</div></div></div>
+        <div class="stat-card"><div class="stat-icon gold">⚓</div><div><div class="stat-value">156</div><div class="stat-label">Agencies</div></div></div>
+        <div class="stat-card"><div class="stat-icon navy">💬</div><div><div class="stat-value">12,430</div><div class="stat-label">Messages Sent</div></div></div>
+      </div>
+      <div class="grid-2" style="gap:20px">
+        <div class="card">
+          <div class="section-header"><div class="section-title">Recently Joined Users</div><span class="section-link" onclick="showSection('users')">View all →</span></div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:var(--blue)">MA</div>
+            <div style="flex:1"><div class="p-name">Miguel Abou Jaoude</div><div class="p-sub">Candidate · Beirut · just now</div></div>
+            <span class="badge badge-blue">Candidate</span>
+          </div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:var(--green)">GS</div>
+            <div style="flex:1"><div class="p-name">Gulf Shipping Ltd.</div><div class="p-sub">Agency · Dubai · 2h ago</div></div>
+            <span class="badge badge-gold">Agency</span>
+          </div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:#884ea0">ST</div>
+            <div style="flex:1"><div class="p-name">Sofia Tanaka</div><div class="p-sub">Candidate · Tokyo · 3h ago</div></div>
+            <span class="badge badge-blue">Candidate</span>
+          </div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:var(--green)">PM</div>
+            <div style="flex:1"><div class="p-name">Pacific Maritime Academy</div><div class="p-sub">Academy · Manila · 5h ago</div></div>
+            <span class="badge badge-green">Academy</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header"><div class="section-title">Latest Job Postings</div><span class="section-link" onclick="showSection('jobs')">View all →</span></div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:#1f4e6e">AM</div>
+            <div style="flex:1"><div class="p-name">Chief Officer — Tanker</div><div class="p-sub">Arab Maritime · $8,500/mo</div></div>
+            <span class="badge badge-green">Active</span>
+          </div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:var(--blue)">GS</div>
+            <div style="flex:1"><div class="p-name">Deck Cadet — Bulk Carrier</div><div class="p-sub">Gulf Shipping · $1,800/mo</div></div>
+            <span class="badge badge-green">Active</span>
+          </div>
+          <div class="person-row">
+            <div class="p-avatar" style="background:var(--orange)">MC</div>
+            <div style="flex:1"><div class="p-name">Navigating Officer — Cruise</div><div class="p-sub">Med Charter · $5,200/mo</div></div>
+            <span class="badge badge-gold">Pending</span>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <div class="section-title" style="margin-bottom:16px">Platform Growth — Last 7 Days</div>
+        <div class="chart-bars" style="height:100px">
+          <div class="chart-bar" style="height:55%"></div>
+          <div class="chart-bar" style="height:70%"></div>
+          <div class="chart-bar" style="height:65%"></div>
+          <div class="chart-bar" style="height:80%"></div>
+          <div class="chart-bar" style="height:75%"></div>
+          <div class="chart-bar" style="height:90%"></div>
+          <div class="chart-bar" style="height:100%;background:var(--gold)"></div>
+        </div>
+        <div class="chart-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+      </div>
+    </div>
+
+    <!-- ALL USERS -->
+    <div id="sec-users" class="section-view">
+      <div class="card" style="margin-bottom:16px;padding:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <div class="search-wrap" style="flex:1;min-width:200px"><span class="search-icon">🔍</span><input class="form-control" id="user-search" placeholder="Search users by name or email..." style="padding-left:36px" oninput="filterUsers()"></div>
+          <select class="form-control" style="width:160px" id="role-filter" onchange="filterUsers()"><option value="">All Roles</option><option>Candidate</option><option>Academy</option><option>Agency</option><option>Admin</option></select>
+          <select class="form-control" style="width:160px"><option>All Statuses</option><option>Active</option><option>Suspended</option><option>Pending</option></select>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>User</th><th>Email</th><th>Role</th><th>Location</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="users-table">
+              <tr class="user-row" data-role="Candidate"><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--blue);width:30px;height:30px;font-size:11px">MA</div><strong>Miguel A.</strong></div></td><td>miguel@example.com</td><td><span class="badge badge-blue">Candidate</span></td><td>Beirut, LB</td><td>May 1, 2025</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="banUser(this)">Ban</button></div></td></tr>
+              <tr class="user-row" data-role="Agency"><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:#c0392b;width:30px;height:30px;font-size:11px">AM</div><strong>Arab Maritime</strong></div></td><td>hr@arabmaritime.com</td><td><span class="badge badge-gold">Agency</span></td><td>Limassol, CY</td><td>Jan 10, 2025</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="banUser(this)">Ban</button></div></td></tr>
+              <tr class="user-row" data-role="Academy"><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--green);width:30px;height:30px;font-size:11px">IM</div><strong>Intl. Maritime Academy</strong></div></td><td>admin@ima.edu.lb</td><td><span class="badge badge-green">Academy</span></td><td>Beirut, LB</td><td>Dec 5, 2024</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="banUser(this)">Ban</button></div></td></tr>
+              <tr class="user-row" data-role="Candidate"><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:var(--gold);width:30px;height:30px;font-size:11px">YD</div><strong>Youssef Darwish</strong></div></td><td>youssef@example.com</td><td><span class="badge badge-gold">Candidate Plus</span></td><td>Alexandria, EG</td><td>Feb 14, 2025</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="banUser(this)">Ban</button></div></td></tr>
+              <tr class="user-row" data-role="Candidate"><td><div style="display:flex;align-items:center;gap:10px"><div class="p-avatar" style="background:#884ea0;width:30px;height:30px;font-size:11px">ST</div><strong>Sofia Tanaka</strong></div></td><td>sofia@example.com</td><td><span class="badge badge-blue">Candidate</span></td><td>Tokyo, JP</td><td>Mar 8, 2025</td><td><span class="badge badge-gold">Pending</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-green btn-sm" onclick="approveUser(this)">Approve</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL JOBS -->
+    <div id="sec-jobs" class="section-view">
+      <div class="card" style="margin-bottom:16px;padding:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="search-wrap" style="flex:1;min-width:200px"><span class="search-icon">🔍</span><input class="form-control" placeholder="Search job listings..." style="padding-left:36px"></div>
+          <select class="form-control" style="width:160px"><option>All Statuses</option><option>Active</option><option>Pending Review</option><option>Closed</option></select>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Job Title</th><th>Agency</th><th>Salary</th><th>Applications</th><th>Posted</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Chief Officer — Tanker</strong></td><td>Arab Maritime</td><td>$8,500/mo</td><td>24</td><td>Apr 30</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="showToast('Job removed','error')">Remove</button></div></td></tr>
+              <tr><td><strong>Navigating Officer — LNG</strong></td><td>Arab Maritime</td><td>$5,800/mo</td><td>18</td><td>Apr 28</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="showToast('Job removed','error')">Remove</button></div></td></tr>
+              <tr><td><strong>Deck Cadet — Bulk Carrier</strong></td><td>Gulf Shipping</td><td>$1,800/mo</td><td>41</td><td>Apr 25</td><td><span class="badge badge-gold">Pending Review</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-green btn-sm" onclick="showToast('Job approved!','success')">Approve</button><button class="btn btn-red btn-sm" onclick="showToast('Job rejected','error')">Reject</button></div></td></tr>
+              <tr><td><strong>Chief Officer — Superyacht</strong></td><td>Med Charter</td><td>$8,500/mo</td><td>12</td><td>Apr 20</td><td><span class="badge badge-green">Active</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="showToast('Job removed','error')">Remove</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div id="sec-certifications" class="section-view">
+      <div class="card">
+        <div class="section-header" style="margin-bottom:16px"><div class="section-title">All Certificates</div><span class="badge badge-gold">12 pending admin review</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Certificate</th><th>Holder</th><th>Issued By</th><th>Issue Date</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>STCW Basic Safety</strong></td><td>Miguel A.</td><td>IMA Beirut</td><td>Jan 2022</td><td>Jan 2027</td><td><span class="badge badge-green">Verified</span></td><td><button class="btn btn-ghost btn-sm">View PDF</button></td></tr>
+              <tr><td><strong>GMDSS-GOC</strong></td><td>Youssef D.</td><td>Maritime Auth.</td><td>Mar 2023</td><td>Mar 2028</td><td><span class="badge badge-green">Verified</span></td><td><button class="btn btn-ghost btn-sm">View PDF</button></td></tr>
+              <tr><td><strong>ECDIS Type-Specific</strong></td><td>Omar Nassar</td><td>Unknown</td><td>Apr 2025</td><td>Apr 2030</td><td><span class="badge badge-gold">Pending</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View PDF</button><button class="btn btn-green btn-sm" onclick="adminVerify(this)">Verify</button><button class="btn btn-red btn-sm" onclick="adminReject(this)">Reject</button></div></td></tr>
+              <tr><td><strong>Advanced Fire Fighting</strong></td><td>Sara Nour</td><td>IMA Beirut</td><td>Feb 2025</td><td>Feb 2030</td><td><span class="badge badge-gold">Pending</span></td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">View PDF</button><button class="btn btn-green btn-sm" onclick="adminVerify(this)">Verify</button><button class="btn btn-red btn-sm" onclick="adminReject(this)">Reject</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLICATIONS -->
+    <div id="sec-applications" class="section-view">
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">All Applications Platform-Wide</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Candidate</th><th>Position</th><th>Agency</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Miguel A.</td><td>Deck Officer — Tanker</td><td>Arab Maritime</td><td>Apr 28</td><td><span class="badge badge-gold">Under Review</span></td></tr>
+              <tr><td>Youssef D.</td><td>Chief Officer — Superyacht</td><td>Med Charter</td><td>Apr 30</td><td><span class="badge badge-blue">Shortlisted</span></td></tr>
+              <tr><td>Omar N.</td><td>Chief Officer — Tanker</td><td>Arab Maritime</td><td>Apr 27</td><td><span class="badge badge-green">Hired</span></td></tr>
+              <tr><td>Sara N.</td><td>Cadet Position</td><td>Gulf Shipping</td><td>Apr 26</td><td><span class="badge badge-gray">Pending</span></td></tr>
+              <tr><td>Khalid M.</td><td>AB Seaman — Bulk</td><td>Arab Maritime</td><td>Apr 24</td><td><span class="badge badge-red">Rejected</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div id="sec-reports" class="section-view">
+      <div class="card">
+        <div class="section-header" style="margin-bottom:16px"><div class="section-title">Flagged Content & Reports</div><span class="badge badge-red">3 open</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>Reported By</th><th>Target</th><th>Reason</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><span class="badge badge-red">Profile</span></td><td>Agency A</td><td>User #1284</td><td>Fake certificates</td><td>Apr 30</td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">Review</button><button class="btn btn-red btn-sm" onclick="showToast('User suspended','error')">Suspend</button><button class="btn btn-green btn-sm" onclick="showToast('Report dismissed','success')">Dismiss</button></div></td></tr>
+              <tr><td><span class="badge badge-gold">Job Post</span></td><td>Candidate B</td><td>Job #482</td><td>Misleading salary</td><td>Apr 29</td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">Review</button><button class="btn btn-red btn-sm" onclick="showToast('Job removed','error')">Remove</button><button class="btn btn-green btn-sm" onclick="showToast('Report dismissed','success')">Dismiss</button></div></td></tr>
+              <tr><td><span class="badge badge-blue">Message</span></td><td>User C</td><td>User #892</td><td>Spam messages</td><td>Apr 28</td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">Review</button><button class="btn btn-red btn-sm" onclick="showToast('User banned','error')">Ban</button><button class="btn btn-green btn-sm" onclick="showToast('Report dismissed','success')">Dismiss</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERIFY QUEUE -->
+    <div id="sec-verify" class="section-view">
+      <div class="card">
+        <div class="section-header" style="margin-bottom:16px"><div class="section-title">Admin Verification Queue</div><span class="badge badge-gold">12 pending</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th>Type</th><th>Submitted By</th><th>Submitted</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>New Agency Registration</strong><div style="font-size:11px;color:var(--gray-400)">Gulf Shipping Ltd. — Dubai</div></td><td><span class="badge badge-gold">Agency</span></td><td>Gulf Shipping</td><td>1h ago</td><td><div style="display:flex;gap:4px"><button class="btn btn-green btn-sm" onclick="approveItem(this)">Approve</button><button class="btn btn-red btn-sm" onclick="rejectItem(this)">Reject</button></div></td></tr>
+              <tr><td><strong>Academy Accreditation Upload</strong><div style="font-size:11px;color:var(--gray-400)">Pacific Maritime Academy</div></td><td><span class="badge badge-green">Academy</span></td><td>PMA</td><td>3h ago</td><td><div style="display:flex;gap:4px"><button class="btn btn-green btn-sm" onclick="approveItem(this)">Approve</button><button class="btn btn-red btn-sm" onclick="rejectItem(this)">Reject</button></div></td></tr>
+              <tr><td><strong>Certificate Dispute</strong><div style="font-size:11px;color:var(--gray-400)">User claims cert was wrongly rejected</div></td><td><span class="badge badge-red">Dispute</span></td><td>Khalid M.</td><td>5h ago</td><td><div style="display:flex;gap:4px"><button class="btn btn-ghost btn-sm">Review</button><button class="btn btn-green btn-sm" onclick="approveItem(this)">Resolve</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="sec-settings" class="section-view">
+      <div class="grid-2" style="gap:20px">
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px">Platform Settings</div>
+          <div class="form-group"><label class="form-label">Platform Name</label><input class="form-control" value="AutoLinker"></div>
+          <div class="form-group"><label class="form-label">Plus Subscription Price (USD/mo)</label><input class="form-control" value="4.99" type="number" step="0.01"></div>
+          <div class="form-group"><label class="form-label">Free Plan: Max Applications/Month</label><input class="form-control" value="5" type="number"></div>
+          <div class="form-group"><label class="form-label">Email Domain Whitelist</label><input class="form-control" placeholder="Leave empty for all domains"></div>
+          <button class="btn btn-navy" style="width:100%" onclick="showToast('Settings saved!','success')">Save Settings</button>
+        </div>
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px">Feature Toggles</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--gray-50)">
+            <div><div style="font-weight:600;font-size:14px">AI Job Matching</div><div style="font-size:12px;color:var(--gray-400)">Plus feature</div></div>
+            <label style="position:relative;width:44px;height:24px;cursor:pointer"><input type="checkbox" checked style="opacity:0;width:0;height:0"><span style="position:absolute;inset:0;background:var(--green);border-radius:12px;transition:0.2s"></span></label>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--gray-50)">
+            <div><div style="font-weight:600;font-size:14px">Reels & Media</div><div style="font-size:12px;color:var(--gray-400)">All users</div></div>
+            <label style="position:relative;width:44px;height:24px;cursor:pointer"><input type="checkbox" checked style="opacity:0;width:0;height:0"><span style="position:absolute;inset:0;background:var(--green);border-radius:12px;transition:0.2s"></span></label>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
+            <div><div style="font-weight:600;font-size:14px">New Registrations</div><div style="font-size:12px;color:var(--gray-400)">Allow new signups</div></div>
+            <label style="position:relative;width:44px;height:24px;cursor:pointer"><input type="checkbox" checked style="opacity:0;width:0;height:0"><span style="position:absolute;inset:0;background:var(--green);border-radius:12px;transition:0.2s"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY LOG -->
+    <div id="sec-logs" class="section-view">
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">System Activity Log</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Time</th><th>Event</th><th>User</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Today 14:32</td><td><span class="badge badge-green">User Registered</span></td><td>Miguel A.</td><td>New Candidate registered · Beirut</td></tr>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Today 12:15</td><td><span class="badge badge-blue">Job Posted</span></td><td>Arab Maritime</td><td>Chief Officer — Tanker · $8,500/mo</td></tr>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Today 11:02</td><td><span class="badge badge-gold">Cert Uploaded</span></td><td>Omar N.</td><td>STCW Basic Safety — awaiting verification</td></tr>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Today 09:45</td><td><span class="badge badge-green">Cert Verified</span></td><td>IMA Beirut</td><td>GMDSS-GOC verified for Youssef D.</td></tr>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Yesterday 18:20</td><td><span class="badge badge-red">User Reported</span></td><td>Agency A</td><td>Reported User #1284 for fake certificates</td></tr>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Yesterday 16:10</td><td><span class="badge badge-gold">Application</span></td><td>Youssef D.</td><td>Applied for Chief Officer — Superyacht</td></tr>
+              <tr><td style="white-space:nowrap;color:var(--gray-400);font-size:12px">Yesterday 14:00</td><td><span class="badge badge-green">Subscription</span></td><td>Youssef D.</td><td>Upgraded to AutoLinker Plus · $4.99/mo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function filterUsers() {
+  const q = document.getElementById('user-search').value.toLowerCase();
+  const role = document.getElementById('role-filter').value.toLowerCase();
+  document.querySelectorAll('.user-row').forEach(r => {
+    const matchQ = r.textContent.toLowerCase().includes(q);
+    const matchRole = !role || r.dataset.role.toLowerCase().includes(role);
+    r.style.display = matchQ && matchRole ? '' : 'none';
+  });
+}
+function banUser(btn) {
+  const row = btn.closest('tr');
+  row.querySelector('td:nth-child(6)').innerHTML = '<span class="badge badge-red">Banned</span>';
+  btn.remove();
+  showToast('User banned from platform', 'error');
+}
+function approveUser(btn) {
+  const row = btn.closest('tr');
+  row.querySelector('td:nth-child(6)').innerHTML = '<span class="badge badge-green">Active</span>';
+  btn.closest('div').innerHTML = '<button class="btn btn-ghost btn-sm">View</button><button class="btn btn-red btn-sm" onclick="banUser(this)">Ban</button>';
+  showToast('User approved!', 'success');
+}
+function adminVerify(btn) {
+  btn.closest('tr').querySelector('td:nth-child(6)').innerHTML = '<span class="badge badge-green">Verified</span>';
+  btn.closest('div').innerHTML = '<button class="btn btn-ghost btn-sm">View PDF</button>';
+  showToast('Certificate verified!', 'success');
+}
+function adminReject(btn) {
+  btn.closest('tr').querySelector('td:nth-child(6)').innerHTML = '<span class="badge badge-red">Rejected</span>';
+  btn.closest('div').innerHTML = '';
+  showToast('Certificate rejected', 'error');
+}
+function approveItem(btn) {
+  btn.closest('tr').innerHTML = btn.closest('tr').innerHTML.replace(/(<td[^>]*>)([\s\S]*?)(<\/td>\s*$)/, '<td><span class="badge badge-green">Approved</span></td>');
+  showToast('Item approved!', 'success');
+}
+function rejectItem(btn) {
+  showToast('Item rejected', 'error');
+}
+showSection('overview');
+</script>
+</body>
+</html>
